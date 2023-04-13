@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/colors.dart';
 import 'package:todo_app/login.dart';
 import 'package:todo_app/home.dart';
+import 'package:todo_app/route_generator.dart';
 
 class TodoApp extends StatelessWidget {
   const TodoApp({super.key});
@@ -11,10 +12,7 @@ class TodoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Todo',
       initialRoute: '/login',
-      routes: {
-        '/login': (BuildContext context) => LoginPage(),
-        '/': (BuildContext context) => const HomePage()
-      },
+      onGenerateRoute: RouteGenerator.generateRoute,
       theme: _firstTodoTheme(),
     );
   }
@@ -39,8 +37,9 @@ ThemeData _firstTodoTheme() {
 TextTheme _firstTextTheme(TextTheme base) {
   return base
       .copyWith(
-          headline6: base.headline6
-              ?.copyWith(color: todoLightGreen, fontWeight: FontWeight.w300))
+          titleLarge: base.titleLarge
+              ?.copyWith(color: todoLightGreen, fontWeight: FontWeight.w300),
+          headlineSmall: base.headlineSmall?.copyWith(color: todoWhite))
       .apply(
           fontFamily: 'Rubik',
           displayColor: todoLightGreen,
